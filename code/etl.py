@@ -19,7 +19,7 @@ for col in column:
   graduation[col] = pd.to_numeric(graduation[col], errors="coerce")
   if "#" in col:
     graduation[col] = graduation[col].astype("Int64")
-    
+
 # Extract the number of years from the Cohort column
 graduation["Cohort Duration"] = graduation["Cohort"].str.extract(r"(\d+)").astype(int)
 # Add to Cohort Year to create Graduation Year
@@ -38,6 +38,3 @@ count_s_across_columns = len(filtered_attendance)
 # Dropped suppressed data
 rows_to_drop = attendance.isin(['s']).any(axis=1)
 attendance = attendance[~rows_to_drop]
-
-
-
