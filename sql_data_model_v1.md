@@ -1,5 +1,5 @@
 # Team Education: 
-# Sprint 1 - DRAFT Explanation of SQL Entity Relationship Model 
+# *Sprint 1* - DRAFT Explanation of SQL Entity Relationship Model 
 ___
 
 ## Entities and Relationships
@@ -14,6 +14,7 @@ ___
 - HIGH_SCHOOL_PERFORMANCE
 
 **ACADEMIC_YEAR (many-to-many relationship with other entities):** Very important primary key that all entities and relationships have in common. The main issue with this choice is that primary keys cannot contain duplicate values and our dataset is quite large and diverse.
+
 A possible fix for this could be combining the ACADEMIC_YEAR, BOROUGH, and GRADE_LEVEL entities into a *Composite Key* - but that will require more research.
 
 **BOROUGH (many-to-many relationship with other entities):** All data is partitioned by NYC’s 5 boroughs. Could be part of Composite Key since all/majority of info can be linked to a borough
@@ -32,3 +33,11 @@ These two are more broad, track demographics across the board (are related to bo
   - *HS Performance* = SAT & Regents Scores followed by performance_id, academic_year_id FK,  borough_id,  grade_level_id (only references 9-12 grade), demographic_value_id,  graduation_count,  regents_test_takers INT, sat_test_takers INT, etc
 
   - *Elementary and Middle School Performance* = similar attributes to High School, tracks ELA and Math Standardized test results for 3rd - 8th grades
+
+___
+## Events
+
+As of Sprint 1, events for the future database will be for one time tasks such as table creation.
+
+Tables housing data from the above entities will be created once key attributes are solidified. Events for edits are TBD.
+
