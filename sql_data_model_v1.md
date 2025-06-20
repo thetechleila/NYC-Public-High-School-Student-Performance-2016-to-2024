@@ -1,5 +1,5 @@
 # Team Education: 
-# DRAFT Entity Relationship Model **||** Sprint 1 Explanation
+# Sprint 1 - DRAFT Explanation of SQL Entity Relationship Model 
 ___
 
 ## Entities and Relationships
