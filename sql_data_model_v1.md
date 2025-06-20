@@ -1,16 +1,17 @@
-# Team Education: DRAFT Entity Relationship Model **||** Sprint 1 Explanation
+# Team Education: 
+# DRAFT Entity Relationship Model **||** Sprint 1 Explanation
 ___
 
 ## Entities and Relationships
 
-ACADEMIC_YEAR
-BOROUGH
-GRADE_LEVEL
-DEMOGRAPHIC_CATEGORY  
-DEMOGRAPHIC_VALUE
-STUDENT_DEMOGRAPHICS
-ELEMENTARY_MIDDLE_PERFORMANCE
-HIGH_SCHOOL_PERFORMANCE
+- ACADEMIC_YEAR
+- BOROUGH
+- GRADE_LEVEL
+- DEMOGRAPHIC_CATEGORY  
+- DEMOGRAPHIC_VALUE
+- STUDENT_DEMOGRAPHICS
+- ELEMENTARY_MIDDLE_PERFORMANCE
+- HIGH_SCHOOL_PERFORMANCE
 
 **ACADEMIC_YEAR (many-to-many relationship with other entities):** Very important primary key that all entities and relationships have in common. The main issue with this choice is that primary keys cannot contain duplicate values and our dataset is quite large and diverse.
 A possible fix for this could be combining the ACADEMIC_YEAR, BOROUGH, and GRADE_LEVEL entities into a *Composite Key* - but that will require more research.
