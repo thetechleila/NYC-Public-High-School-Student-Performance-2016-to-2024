@@ -1,13 +1,14 @@
 from database import connection
 import pandas as pd
 
+
 def extract_csv():
     """
     Load CSV files
     """
     attendance = pd.read_csv("/Users/sa17/Library/Mobile Documents/com~apple~CloudDocs/Brag Folder/projects/Education-Capstone/data/attendance.csv")
     graduation = pd.read_csv("/Users/sa17/Library/Mobile Documents/com~apple~CloudDocs/Brag Folder/projects/Education-Capstone/data/2023-graduation-rates-public-borough.csv")
-    regents = pd.read_csv("/Users/sa17/Library/Mobile Documents/com~apple~CloudDocs/Brag Folder/projects/Education-Capstone/data/2014-15-to-2022-23-nyc-regents-overall-and-by-category---public 2 (1).csv")
+    regents = pd.read_csv("/Users/sa17/Library/Mobile Documents/com~apple~CloudDocs/Brag Folder/projects/Education-Capstone/data/2014-15-to-2022-23-nyc-regents-overall-and-by-category---public 2 (1).csv", low_memory=False)
     return attendance, graduation, regents 
 
 
@@ -113,7 +114,7 @@ def transform_graduation(graduation):
     "# TASC (GED)": "tasc_ged_count",
     "% TASC (GED) of Cohort": "tasc_ged_percent",
     "Graduation Year": "grad_year",
-})
+     })
 
     return graduation
 
@@ -151,7 +152,7 @@ def transform_regents(regents):
     "Percent Scoring 65 or Above",
     "Number Scoring 80 or Above", 
     "Percent Scoring 80 or Above",
-]
+    ]
 
     for col in numeric_columns:
          regents[col] = pd.to_numeric(regents[col], errors="coerce")
@@ -187,7 +188,7 @@ def load_postgres(df, table_name):
     # Prepare and insert data row by row
     if table_name == "attendance_and_absenteeism":
         insert_into = """
-        INSERT INTO "attendance_and_absenteeism" 
+        INSERT INTO attendance_and_absenteeism
         ("borough", "grade", "category_name", "academic_year_id", "total_days", "days_absent_count", 
         "days_present_count", "attendance_percent", "contributing_10plus_total_days_and_1plus_pres_day", 
         "chronically_absent_count", "chronically_absent_percent")
@@ -205,7 +206,7 @@ def load_postgres(df, table_name):
 
     elif table_name == "graduation_data":
         insert_into = """
-        INSERT INTO "graduation_data" 
+        INSERT INTO graduation_data
         ("borough", "cohort_name", "cohort_year", "category_name", "total_cohort", "grad_count",
         "grad_percent", "total_regents_count", "total_regents_percent", "total_regents_grad_percent",
         "advanced_regents_count", "advanced_regents_percent", "advanced_regents_grads_percent",
@@ -232,7 +233,7 @@ def load_postgres(df, table_name):
 
     elif table_name == "regents":
         insert_into = """
-        INSERT INTO "regents"
+        INSERT INTO regents
         ("regents_exam", "borough", "category_name", "test_year", "total_tested", "mean_score",
         "number_scoring_below_60", "percent_scoring_below_60", "number_scoring_above_80",
         "percent_scoring_above_80", "number_scoring_cr", "percent_scoring_cr") 
@@ -255,6 +256,11 @@ def load_postgres(df, table_name):
 
           
 def main():
+    # Test Connection 
+    if connection() is None:
+        print("Database connection failure: Exiting process.")
+        return
+    
     # Extract
     attendance, graduation, regents = extract_csv()
 
