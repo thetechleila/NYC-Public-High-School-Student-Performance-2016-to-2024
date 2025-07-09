@@ -88,8 +88,8 @@ def transform_graduation(graduation):
     graduation = graduation.rename(columns={
     "Borough": "borough",
     "Cohort": "cohort_name", 
-    "Cohort Year": "cohort_year",
-    "Category": "category_name",
+    "Cohort Year": "cohort_year", 
+    "Category": "category_name", 
     "# Total Cohort": "total_cohort",
     "# Grads": "grad_count",
     "% Grads": "grad_percent",
@@ -214,7 +214,7 @@ def load_postgres(df, table_name):
         "local_diploma_count", "local_diploma_perc", "percent_local_of_grads",
         "still_enrolled_count", "still_enrolled_percent", "dropout_count", "dropout_percent",
         "sacc_iep_diploma_count", "sacc_iep_diploma_percent", "tasc_ged_count", "tasc_ged_percent", "grad_year")
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         for _, row in df.iterrows():
@@ -242,9 +242,9 @@ def load_postgres(df, table_name):
         
         for _, row in df.iterrows():
             values = (
-                row["regents_exam"], row["borough"], row["category_name"], row["test_year"],row["total_tested"], 
-                row["mean_score"], row["number_scoring_below_60"], row["percent_scoring_below_60"],row["number_scoring_above_80"],
-                row["percent_scoring_above_80"],row["number_scoring_cr"],row["percent_scoring_cr"]
+                row["regents_exam"], row["borough"], row["category_name"], row["test_year"], row["total_tested"], 
+                row["mean_score"], row["number_scoring_below_60"], row["percent_scoring_below_60"], row["number_scoring_above_80"],
+                row["percent_scoring_above_80"], row["number_scoring_cr"], row["percent_scoring_cr"]
             )
             cursor.execute(insert_into, values)
              
