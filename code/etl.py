@@ -124,7 +124,7 @@ def transform_regents(regents):
     - Remove suppressed, "Category" and "All Students" data 
     - Drop unnecessary columns 
     - Convert object types to integers or floats
-    - Rename columns to match SQL
+    - Rename and define columns orders to match SQL
     """
 
     # Remove suppressed rows
@@ -174,6 +174,19 @@ def transform_regents(regents):
     "Number Scoring 65 or Above": "number_scoring_cr",
     "Percent Scoring 65 or Above": "percent_scoring_cr"
     })
+     
+    # Define column order for SQL
+    columns = [
+    "regents_exam", "borough", "category_name", "test_year", "total_tested", "mean_score",
+    "number_scoring_below_60", "percent_scoring_below_60", "number_scoring_above_80",
+    "percent_scoring_above_80", "number_scoring_cr", "percent_scoring_cr"
+    ]
+
+    # Reorder columns
+    regents = regents[columns]
+
+    # Save to a csv file
+    regents.to_csv("/Users/sa17/Library/Mobile Documents/com~apple~CloudDocs/Brag Folder/projects/Education-Capstone/data/regents.csv", index=False, header=False)
 
     return regents
 
@@ -184,6 +197,9 @@ def load_postgres(df, table_name):
     """
     conn = connection()
     cursor = conn.cursor()
+
+    # Remove any existing data from the table
+    cursor.execute(f"DELETE FROM {table_name};")
 
     # Prepare and insert data row by row
     if table_name == "attendance_and_absenteeism":
@@ -232,21 +248,16 @@ def load_postgres(df, table_name):
             cursor.execute(insert_into, values)
 
     elif table_name == "regents":
-        insert_into = """
-        INSERT INTO regents
-        ("regents_exam", "borough", "category_name", "test_year", "total_tested", "mean_score",
-        "number_scoring_below_60", "percent_scoring_below_60", "number_scoring_above_80",
-        "percent_scoring_above_80", "number_scoring_cr", "percent_scoring_cr") 
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
-        
-        for _, row in df.iterrows():
-            values = (
-                row["regents_exam"], row["borough"], row["category_name"], row["test_year"], row["total_tested"], 
-                row["mean_score"], row["number_scoring_below_60"], row["percent_scoring_below_60"], row["number_scoring_above_80"],
-                row["percent_scoring_above_80"], row["number_scoring_cr"], row["percent_scoring_cr"]
-            )
-            cursor.execute(insert_into, values)
+        file_path = "/Users/sa17/Library/Mobile Documents/com~apple~CloudDocs/Brag Folder/projects/Education-Capstone/data/regents.csv"
+        columns = [
+        "regents_exam", "borough", "category_name", "test_year", "total_tested", "mean_score",
+        "number_scoring_below_60", "percent_scor=\ng_below_60", "number_scoring_above_80",
+        "percent_scoring_above_80", "number_scoring_cr", "percent_scoring_cr"
+        ]
+
+        with open(file_path, "r") as f:
+            cursor.copy_from(f, "regents", columns=columns, sep=",")
+
              
     # Commit transaction and close connection
     conn.commit()
