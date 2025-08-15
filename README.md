@@ -68,6 +68,10 @@ _**Final Report**_
 
 [here](https://docs.google.com/document/d/1ls4zs1UdxLfbef_vB63qN4HFo2Ut-CyuV7YtQXxOeHA/edit?usp=sharing)
 
+_**Presentation**_
+
+[here](https://docs.google.com/presentation/d/1op0g4eBRwaSceaslTxckF15XHkqsXzQx45KyigKYOSY/edit?usp=sharing)
+
 ## Tools
 
 - Python
