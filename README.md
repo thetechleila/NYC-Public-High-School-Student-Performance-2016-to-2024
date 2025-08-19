@@ -64,9 +64,11 @@ _**Interactive Tableau Dashboard**_
 
 View the NYC High School Student Performance Before and After the Pandemic (2016-2023) dashboard [here](https://public.tableau.com/app/profile/rosselyn.oliva/viz/HighSchoolStudentPerformanceinNYC/Dashboard1)
 
-_**[Final Report]**_(https://docs.google.com/document/d/1ls4zs1UdxLfbef_vB63qN4HFo2Ut-CyuV7YtQXxOeHA/edit?usp=sharing)
+_**Final Report**_
+Read more about our findings [here](https://docs.google.com/document/d/1ls4zs1UdxLfbef_vB63qN4HFo2Ut-CyuV7YtQXxOeHA/edit?usp=sharing)
 
-_**[Presentation]**_(https://docs.google.com/presentation/d/1op0g4eBRwaSceaslTxckF15XHkqsXzQx45KyigKYOSY/edit?usp=sharing)
+_**[Presentation]**_
+View the group presentation on Google Slides [here](https://docs.google.com/presentation/d/1op0g4eBRwaSceaslTxckF15XHkqsXzQx45KyigKYOSY/edit?usp=sharing)
 
 ## Tools
 
